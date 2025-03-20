@@ -1,6 +1,7 @@
 package dev.sj74.content_calendar.controller;
 
 import dev.sj74.content_calendar.model.Content;
+import dev.sj74.content_calendar.model.Status;
 import dev.sj74.content_calendar.repository.ContentRepository;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
@@ -51,5 +52,15 @@ public class ContentController {
     @DeleteMapping("/{id}")
     public void delete(@PathVariable Integer id) {
         repository.deleteById(id);
+    }
+
+    @GetMapping("/filter/{keyword}")
+    public List<Content> findByTitle(@PathVariable String keyword) {
+        return repository.findAllByTitleContains(keyword);
+    }
+
+    @GetMapping("/filter/status/{status}")
+    public List<Content> findByStatus(@PathVariable Status status) {
+        return repository.listByStatus(status);
     }
 }

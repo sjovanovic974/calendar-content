@@ -10,7 +10,7 @@ public record Content(
         Integer id,
         @NotBlank
         String title,
-        String desc,
+        String description,
         Status status,
         Type contentType,
         LocalDateTime dateCreated,
